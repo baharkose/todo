@@ -1,21 +1,27 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 const Header = ({ setAddList, addList }) => {
   const [gelenInput, setGelenInput] = useState("");
 
-
   const handleInput = (e) => {
     e.preventDefault();
-    setAddList([
-      ...addList,
-      {
-        id: new Date().getTime(),
-        note: gelenInput,
-      }
-    ]);
+    if (!gelenInput) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Please, give a note...",
+          });
 
-
- 
+    } else {
+      setAddList([
+        ...addList,
+        {
+          id: new Date().getTime(),
+          note: gelenInput,
+        },
+      ]);
+    }
   };
   return (
     <div>

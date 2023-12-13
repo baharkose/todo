@@ -16,7 +16,8 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+  padding-top: 2rem;
   flex-direction: column;
   width: 400px;
   border-radius: 8px;
@@ -46,13 +47,25 @@ input {
   font-weight: bolder;
 }
 
-button{
+button {
   font-family: "Indie Flower", cursive;
-  background-color: #DB6255;
+  background-color: #db6255;
 }
 
 .backgroundImg {
   position: absolute;
   bottom: -60px;
   right: -80px;
+}
+
+.silBtn,
+.duzenBtn {
+  color: #db6255;
+  background-color: transparent;
+  border: none;
+  font-size: 1.1rem;
+}
+
+.duzenBtn {
+  color: #5b5a76;
 }

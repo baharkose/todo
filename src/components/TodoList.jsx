@@ -1,72 +1,70 @@
-import React, { useState,useEffect  } from "react";
+import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { AiFillEdit } from "react-icons/ai";
+import { RiDeleteBin5Fill } from "react-icons/ri";
+import { GrEdit } from "react-icons/gr";
 
+
+const MySwal = withReactContent(Swal);
 const TodoList = ({ addList, setAddList }) => {
-
-    console.log(addList)
-
     useEffect(() => {
-        localStorage.setItem("list", JSON.stringify(addList));
-    }, [addList]); // This effect runs every time 'addList' changes
-
-  const handleSil = (id) => {
-    setAddList(addList.filter((item) => item.id !== id));
-  };
-
-  const [duzenle, setDuzenle] = useState("");
-  const [show, setShow] = useState(true);
-  const [secilen, setSecilen] = useState({
-    id: "",
-    note: "",
-  });
-
-  const handleDuzenle = (id) => {
-    setDuzenle("");
-
-    setSecilen(addList.find((item) => item.id === id));
-    setSecilen({
-      id: id,
-      note: duzenle,
-    });
-  };
-
-  //- gelen idy göre güncelle obje listesini güncelleme
-
-  const updateList = (id) => {
-    setAddList(
-      addList.map((item) => {
-        if (item.id === secilen.id) {
-          return { ...item, note: duzenle };
+      localStorage.setItem("list", JSON.stringify(addList));
+    }, [addList]);
+  
+    const handleSil = (id) => {
+      setAddList(addList.filter((item) => item.id !== id));
+    };
+  
+    const updateList = (id, yeniNot) => {
+      setAddList(
+        addList.map((item) => {
+          if (item.id === id) {
+            return { ...item, note: yeniNot };
+          }
+          return item;
+        })
+      );
+    };
+  
+    const handleDuzenle = (id) => {
+      const secilenItem = addList.find((item) => item.id === id);
+  
+      MySwal.fire({
+        title: "Öğeyi Düzenle",
+        input: "text",
+        inputValue: secilenItem.note,
+        showCancelButton: true,
+        confirmButtonText: "Kaydet",
+        cancelButtonText: "İptal",
+        inputValidator: (value) => {
+          if (!value) {
+            return "Değer girmelisiniz!";
+          }
+        },
+      }).then((result) => {
+        if (result.value) {
+          updateList(id, result.value);
         }
-        return item;
-      })
+      });
+    };
+  
+    return (
+      <div>
+        {addList.map(({ id, note }) => (
+          <p key={id}>
+            {note}
+            <button onClick={() => handleSil(id)} className="silBtn"><RiDeleteBin5Fill />
+
+</button>
+            <button className="duzenBtn" onClick={() => handleDuzenle(id)}><GrEdit />
+
+
+</button>
+          </p>
+        ))}
+      </div>
     );
-    setShow(true);
   };
-
-  console.log(secilen);
-
-  return (
-    <div>
-      <p style={{ display: show ? "none" : "block" }}>
-        <input type="text" onChange={(e) => setDuzenle(e.target.value)} />
-        <button onClick={updateList}>kaydet</button>
-      </p>
-      {addList.map(({ id, note }) => (
-        <p key={id}>
-          {note}
-          <button onClick={() => handleSil(id)}>Sil</button>
-          <button
-            onClick={() => {
-              handleDuzenle(id);
-              setShow(!show);
-            }}
-          >
-            Düzenle
-          </button>
-        </p>
-      ))}
-    </div>
-  );
-};
-
-export default TodoList;
+  
+  export default TodoList;
