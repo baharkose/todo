@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const TodoList = ({ addList, setAddList }) => {
-  localStorage.setItem("list", JSON.stringify(addList));
+//   localStorage.setItem("list", JSON.stringify(addList));
   const handleSil = (id) => {
     setAddList(addList.filter((item) => item.id != id));
   };
@@ -34,7 +34,7 @@ const TodoList = ({ addList, setAddList }) => {
         return item;
       })
     );
-    setShow(false);
+    setShow(true);
   };
 
   console.log(secilen);

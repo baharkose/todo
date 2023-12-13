@@ -1,33 +1,58 @@
-body{
-  background-color: #FCDF87;
-  
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+body {
+  background-color: #fcdf87;
+  font-family: "Indie Flower", cursive;
 }
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 80vh;
-  margin-top: 2rem;
-
+  margin-top: 1rem;
 }
 
 .todo-container {
+  background-color: rgba(255, 255, 255, 0.184);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 400px;
-  border: 1px solid gray;
   border-radius: 8px;
   height: 450px;
-  
 }
 
+.header {
+  position: relative;
+}
 
-.backgroundImg{
+input {
+  border: none;
+  width: 270px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: aliceblue;
+}
+
+.addBtn {
+  position: absolute;
+  border: none;
+  font-weight: bold;
+  padding: 9px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  left: 242px;
+  font-weight: bolder;
+}
+
+button{
+  font-family: "Indie Flower", cursive;
+  background-color: #DB6255;
+}
+
+.backgroundImg {
   position: absolute;
   bottom: -60px;
   right: -80px;
 }
-
