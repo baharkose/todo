@@ -5,8 +5,8 @@ import TodoList from "./components/TodoList";
 import background from "./img/back.png"
 
 function App() {
-  const [addList, setAddList] = useState([]
-    // JSON.parse(localStorage.getItem("list")) || []
+  const [addList, setAddList] = useState(
+    JSON.parse(localStorage.getItem("list")) || []
   );
 
   return (

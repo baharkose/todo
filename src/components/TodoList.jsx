@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 
 const TodoList = ({ addList, setAddList }) => {
-//   localStorage.setItem("list", JSON.stringify(addList));
+
+    console.log(addList)
+
+    useEffect(() => {
+        localStorage.setItem("list", JSON.stringify(addList));
+    }, [addList]); // This effect runs every time 'addList' changes
+
   const handleSil = (id) => {
-    setAddList(addList.filter((item) => item.id != id));
+    setAddList(addList.filter((item) => item.id !== id));
   };
 
   const [duzenle, setDuzenle] = useState("");
