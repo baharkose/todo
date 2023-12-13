@@ -14,14 +14,14 @@ const Header = ({ setAddList, addList }) => {
       }
     ]);
 
-    
+
  
   };
   return (
     <div>
-      <form>
+      <form className="header">
         <input type="text" onChange={(e) => setGelenInput(e.target.value)} />
-        <button type="submit" onClick={handleInput}>
+        <button type="submit" onClick={handleInput} className="addBtn">
           +
         </button>
       </form>
