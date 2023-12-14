@@ -39,11 +39,11 @@ input {
   background-color: rgba(240, 248, 255, 0.762);
 }
 
-.emptyImg{
+.emptyImg {
   filter: invert(80%);
   opacity: 50%;
 }
-button{
+button {
   cursor: pointer;
 }
 
@@ -67,9 +67,10 @@ button {
   position: absolute;
   bottom: -60px;
   right: -80px;
+  z-index: 1;
 }
 
-.emptyResim{
+.emptyResim {
   text-align: center;
   padding-top: 2rem;
 }
@@ -128,8 +129,8 @@ button {
 
 .noteText {
   width: 200px;
-  overflow: hidden; 
-  white-space: nowrap; 
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
@@ -137,7 +138,7 @@ button {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  -webkit-line-clamp: 1; 
+  -webkit-line-clamp: 1;
 }
 
 .noteText:hover {
@@ -145,3 +146,20 @@ button {
   text-overflow: initial; /* Fare hover olduğunda taşma durumunu kaldırın */
 }
 
+.nextAndBack {
+  color: #5b5a76;
+  font-size: 2rem;
+  display: flex;
+  justify-content:center;
+  gap: 3rem;
+}
+
+.left,
+.right {
+  padding: 6px;
+  background-color: #fcdf87;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  z-index: 500;
+}
