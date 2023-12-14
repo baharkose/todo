@@ -29,11 +29,17 @@ body {
 }
 
 input {
+  text-indent: 1rem;
+  font-size: 1.4rem;
+  font-family: "Indie Flower", cursive;
   border: none;
   width: 270px;
   height: 36px;
   border-radius: 20px;
-  background-color: aliceblue;
+  background-color: rgba(240, 248, 255, 0.762);
+}
+button{
+  cursor: pointer;
 }
 
 .addBtn {
@@ -84,8 +90,6 @@ button {
 
 .todoList {
   margin-top: 1rem;
-  border: 2px solid red;
-
   font-size: 1.4rem;
   display: flex;
   flex-direction: column;
@@ -114,7 +118,7 @@ button {
 }
 
 .noteText {
-  width: 150px;
+  width: 200px;
   overflow: hidden; 
   white-space: nowrap; 
   text-overflow: ellipsis;

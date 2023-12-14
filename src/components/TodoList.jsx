@@ -5,9 +5,13 @@ import { AiFillEdit } from "react-icons/ai";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { GrEdit } from "react-icons/gr";
 import { IoIosRadioButtonOff } from "react-icons/io";
+import { IoIosRadioButtonOn } from "react-icons/io";
 
 const MySwal = withReactContent(Swal);
+
 const TodoList = ({ addList, setAddList }) => {
+  const [selectedItemId, setSelectedItemId] = useState(null);
+
   useEffect(() => {
     localStorage.setItem("list", JSON.stringify(addList));
   }, [addList]);
@@ -37,6 +41,7 @@ const TodoList = ({ addList, setAddList }) => {
       showCancelButton: true,
       confirmButtonText: "Save",
       cancelButtonText: "Cancel",
+      //- buton renkleri için class ataması yapıldı
       customClass: {
         confirmButton: "custom-confirm-button-class", // Onay butonunun sınıfı
         cancelButton: "custom-cancel-button-class", // İptal butonunun sınıfı
@@ -53,11 +58,38 @@ const TodoList = ({ addList, setAddList }) => {
     });
   };
 
+  const [show, setShow] = useState(false);
+  const handleToggleSelect = (id) => {
+    setSelectedItemId(id);
+  };
+
   return (
     <div className="todoList">
       {addList.map(({ id, note }) => (
-        <div key={id} className="liste">
-          <div className="note"><IoIosRadioButtonOff /> <span className="noteText">{note}</span> </div>
+        <div
+          key={id}
+          className="liste"
+          onClick={() => {
+            handleToggleSelect(id);
+            setShow(!show);
+          }}
+        >
+          <div className="note">
+            {selectedItemId === id && show ? (
+              <IoIosRadioButtonOn />
+            ) : (
+              <IoIosRadioButtonOff />
+            )}{" "}
+            <span
+              className="noteText"
+              style={{
+                textDecoration:
+                  selectedItemId === id && show ? "line-through" : "none",
+              }}
+            >
+              {note}
+            </span>{" "}
+          </div>
           <div className="buttons">
             {" "}
             <button onClick={() => handleSil(id)} className="silBtn">

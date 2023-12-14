@@ -16,6 +16,7 @@ const TodoList = ({ addList, setAddList }) => {
 
   const [duzenle, setDuzenle] = useState("");
   const [show, setShow] = useState(true);
+  const [gorevTamam , setGorevTamam] = useState(false)
   const [secilen, setSecilen] = useState({
     id: "",
     note: "",
@@ -49,7 +50,7 @@ const TodoList = ({ addList, setAddList }) => {
 
   return (
     <div>
-      <p style={{ display: show ? "none" : "block" }}>
+      <p style={{ display: show ? "none" : "block" }} onClick={()=> setGorevTamam(true)}>
         <input type="text" onChange={(e) => setDuzenle(e.target.value)} />
         <button onClick={updateList}>kaydet</button>
       </p>
