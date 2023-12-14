@@ -65,8 +65,8 @@ button {
 
 .backgroundImg {
   position: absolute;
-  bottom: -60px;
-  right: -80px;
+  bottom: -64px;
+  right: -74px;
   z-index: 1;
 }
 
@@ -157,7 +157,7 @@ button {
 .left,
 .right {
   padding: 6px;
-  background-color: #fcdf87;
+  background-color: #db6255;
   border-radius: 50%;
   text-align: center;
   cursor: pointer;

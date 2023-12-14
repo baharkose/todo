@@ -4,13 +4,17 @@ import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 import background from "./img/back.png";
 import emptyImg from "./img/empty.png";
+import { AiFillCaretLeft } from "react-icons/ai";
+import { AiFillCaretRight } from "react-icons/ai";
 
 function App() {
   const [addList, setAddList] = useState(
     JSON.parse(localStorage.getItem("list")) || []
   );
   const listLength = addList.length;
-  console.log(listLength)
+
+ 
+  console.log(listLength);
 
   return (
     <>
@@ -26,6 +30,10 @@ function App() {
               <img className="emptyImg" src={emptyImg} alt="" width="170px" />
             </div>
             <TodoList addList={addList} setAddList={setAddList} />
+          </div>
+          <div className="nextAndBack" style={{ display: listLength === 4 ? "flex" : "none" }}>
+            <AiFillCaretLeft className="left" />
+            <AiFillCaretRight className="right" />
           </div>
 
           <img

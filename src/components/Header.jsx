@@ -18,6 +18,7 @@ const Header = ({ setAddList, addList }) => {
           });
 
     } else {
+      setGelenInput("")
       setAddList([
         ...addList,
         {

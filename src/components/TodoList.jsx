@@ -6,8 +6,7 @@ import { RiDeleteBin5Fill } from "react-icons/ri";
 import { GrEdit } from "react-icons/gr";
 import { IoIosRadioButtonOff } from "react-icons/io";
 import { IoIosRadioButtonOn } from "react-icons/io";
-import { AiFillCaretLeft } from "react-icons/ai";
-import { AiFillCaretRight } from "react-icons/ai";
+
 
 
 const MySwal = withReactContent(Swal);
@@ -107,10 +106,7 @@ const TodoList = ({ addList, setAddList }) => {
         </div>
       ))}
 
-      <div className="nextAndBack">
-      <AiFillCaretLeft className="left"/>
-      <AiFillCaretRight className="right"/>
-      </div>
+     
     </div>
   );
 };
