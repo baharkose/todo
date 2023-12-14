@@ -11,6 +11,10 @@ const Header = ({ setAddList, addList }) => {
             icon: "error",
             title: "Oops...",
             text: "Please, give a note...",
+
+            customClass: {
+              confirmButton: 'custom-confirm-button-class',}
+            
           });
 
     } else {

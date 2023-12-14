@@ -63,9 +63,72 @@ button {
   color: #db6255;
   background-color: transparent;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 
 .duzenBtn {
   color: #5b5a76;
 }
+
+.custom-confirm-button-class {
+  background-color: #50a870 !important; /* Butonun arka plan rengi */
+  color: white !important; /* Yazı rengi */
+  /* Diğer stillendirme */
+}
+
+.custom-cancel-button-class {
+  background-color: #db6255 !important; /* Butonun arka plan rengi */
+  color: white !important; /* Yazı rengi */
+  /* Diğer stillendirme */
+}
+
+.todoList {
+  margin-top: 1rem;
+  border: 2px solid red;
+
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 300px;
+}
+
+.liste {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.note {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.buttons {
+  display: flex;
+  padding-top: 0.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.noteText {
+  width: 150px;
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 1; 
+}
+
+.noteText:hover {
+  white-space: normal; /* Fare hover olduğunda satır sonlarına izin verin */
+  text-overflow: initial; /* Fare hover olduğunda taşma durumunu kaldırın */
+}
+
