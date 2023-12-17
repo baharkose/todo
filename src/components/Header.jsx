@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 
 const Header = ({ setAddList, addList }) => {
   const [gelenInput, setGelenInput] = useState("");
+  //- id ataması için counter oluşturuldu
   const [counter, setCounter] = useState(1);
 
 
@@ -13,9 +14,8 @@ const Header = ({ setAddList, addList }) => {
         icon: "error",
         title: "Oops...",
         text: "Please, give a note...",
-
         customClass: {
-          confirmButton: "custom-confirm-button-class",
+        confirmButton: "custom-confirm-button-class",
         },
       });
     } else {

@@ -17,7 +17,7 @@ const TodoList = ({ addList, setAddList }) => {
   const itemsPerPage = 4; //- sayfa başına 4 öge getirmek için
 
   //- Sayfalanmış ögeleri hesaplayalım
-  const indexOfLastItem = currentPage + itemsPerPage; //- her sayfanın son elemanının indexisini bul
+  const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = addList.slice(indexOfFirstItem, indexOfLastItem);
 
@@ -27,7 +27,6 @@ const TodoList = ({ addList, setAddList }) => {
 
   const handleSil = (id) => {
     setAddList(addList.filter((item) => item.id !== id));
-    
   };
 
   const updateList = (id, yeniNot) => {
@@ -67,7 +66,6 @@ const TodoList = ({ addList, setAddList }) => {
       }
     });
   };
-
 
   //- hangi not hangisi görüntülemek için
   const [show, setShow] = useState(false);
