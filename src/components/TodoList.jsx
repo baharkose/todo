@@ -21,6 +21,9 @@ const TodoList = ({ addList, setAddList }) => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = addList.slice(indexOfFirstItem, indexOfLastItem);
 
+  //- birden fazla seçim yapabilmek için
+  const [selectedItems, setSelectedItems] = useState([]);
+
   useEffect(() => {
     localStorage.setItem("list", JSON.stringify(addList));
   }, [addList]);
@@ -70,37 +73,35 @@ const TodoList = ({ addList, setAddList }) => {
   //- hangi not hangisi görüntülemek için
   const [show, setShow] = useState(false);
   const handleToggleSelect = (id) => {
-    setSelectedItemId(id);
+    if (selectedItems.includes(id)) {
+      setSelectedItems(selectedItems.filter((itemId) => itemId !== id));
+    } else {
+      setSelectedItems([...selectedItems, id]);
+    }
   };
 
   return (
     <div className="todoList">
       {currentItems.map(({ id, note }, index) => (
         <div key={id} className="liste">
-          <div
-            className="note"
-            onClick={() => {
-              handleToggleSelect(id);
-              setShow(!show);
-            }}
-          >
-            {selectedItemId === id && show ? (
+          <div className="note" onClick={() => handleToggleSelect(id)}>
+            {selectedItems.includes(id) ? (
               <IoIosRadioButtonOn />
             ) : (
               <IoIosRadioButtonOff />
-            )}{" "}
+            )}
             <span
               className="noteText"
               style={{
-                textDecoration:
-                  selectedItemId === id && show ? "line-through" : "none",
+                textDecoration: selectedItems.includes(id)
+                  ? "line-through"
+                  : "none",
               }}
             >
-              {note} ` {index+1}`
-            </span>{" "}
+              {`${index + 1}. ${note}`}
+            </span>
           </div>
           <div className="buttons">
-            {" "}
             <button onClick={() => handleSil(id)} className="silBtn">
               <RiDeleteBin5Fill />
             </button>
