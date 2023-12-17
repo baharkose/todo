@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import Pagination from "./Pagination";
+
 import { AiFillEdit } from "react-icons/ai";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { GrEdit } from "react-icons/gr";
 import { IoIosRadioButtonOff } from "react-icons/io";
 import { IoIosRadioButtonOn } from "react-icons/io";
 
-
-
 const MySwal = withReactContent(Swal);
 
 const TodoList = ({ addList, setAddList }) => {
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1); //- sayfanın başlangıç değerini belirledik.
+  const itemsPerPage = 4; //- sayfa başına 4 öge getirmek için
+
+  //- Sayfalanmış ögeleri hesaplayalım
+  const indexOfLastItem = currentPage + itemsPerPage; //- her sayfanın son elemanının indexisini bul
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = addList.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
     localStorage.setItem("list", JSON.stringify(addList));
@@ -65,20 +72,17 @@ const TodoList = ({ addList, setAddList }) => {
     setSelectedItemId(id);
   };
 
-  
-
   return (
     <div className="todoList">
-      {addList.map(({ id, note }) => (
-        <div
-          key={id}
-          className="liste"
-          onClick={() => {
-            handleToggleSelect(id);
-            setShow(!show);
-          }}
-        >
-          <div className="note">
+      {currentItems.map(({ id, note }) => (
+        <div key={id} className="liste">
+          <div
+            className="note"
+            onClick={() => {
+              handleToggleSelect(id);
+              setShow(!show);
+            }}
+          >
             {selectedItemId === id && show ? (
               <IoIosRadioButtonOn />
             ) : (
@@ -106,7 +110,12 @@ const TodoList = ({ addList, setAddList }) => {
         </div>
       ))}
 
-     
+      <Pagination
+        totalItems={addList.length}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };
