@@ -16,6 +16,9 @@ const TodoList = ({ addList, setAddList }) => {
   const [currentPage, setCurrentPage] = useState(1); //- sayfanın başlangıç değerini belirledik.
   const itemsPerPage = 4; //- sayfa başına 4 öge getirmek için
 
+ 
+
+
   //- Sayfalanmış ögeleri hesaplayalım
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -82,35 +85,40 @@ const TodoList = ({ addList, setAddList }) => {
 
   return (
     <div className="todoList">
-      {currentItems.map(({ id, note }, index) => (
-        <div key={id} className="liste">
-          <div className="note" onClick={() => handleToggleSelect(id)}>
-            {selectedItems.includes(id) ? (
-              <IoIosRadioButtonOn />
-            ) : (
-              <IoIosRadioButtonOff />
-            )}
-            <span
-              className="noteText"
-              style={{
-                textDecoration: selectedItems.includes(id)
-                  ? "line-through"
-                  : "none",
-              }}
-            >
-              {`${index + 1}. ${note}`}
-            </span>
+      {currentItems.map(({ id, note }, index) => {
+        // Sıra numarası hesaplaması
+        const itemNumber = index + 1 + (currentPage - 1) * itemsPerPage;
+
+        return (
+          <div key={id} className="liste">
+            <div className="note" onClick={() => handleToggleSelect(id)}>
+              {selectedItems.includes(id) ? (
+                <IoIosRadioButtonOn />
+              ) : (
+                <IoIosRadioButtonOff />
+              )}
+              <span
+                className="noteText"
+                style={{
+                  textDecoration: selectedItems.includes(id)
+                    ? "line-through"
+                    : "none",
+                }}
+              >
+                {`${itemNumber}. ${note}`} {/* Sıra numarası gösterimi */}
+              </span>
+            </div>
+            <div className="buttons">
+              <button onClick={() => handleSil(id)} className="silBtn">
+                <RiDeleteBin5Fill />
+              </button>
+              <button className="duzenBtn" onClick={() => handleDuzenle(id)}>
+                <GrEdit />
+              </button>
+            </div>
           </div>
-          <div className="buttons">
-            <button onClick={() => handleSil(id)} className="silBtn">
-              <RiDeleteBin5Fill />
-            </button>
-            <button className="duzenBtn" onClick={() => handleDuzenle(id)}>
-              <GrEdit />
-            </button>
-          </div>
-        </div>
-      ))}
+        );
+      })}
 
       <Pagination
         totalItems={addList.length}
