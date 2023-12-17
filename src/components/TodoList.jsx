@@ -12,12 +12,8 @@ import { IoIosRadioButtonOn } from "react-icons/io";
 const MySwal = withReactContent(Swal);
 
 const TodoList = ({ addList, setAddList }) => {
-  const [selectedItemId, setSelectedItemId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1); //- sayfanın başlangıç değerini belirledik.
   const itemsPerPage = 4; //- sayfa başına 4 öge getirmek için
-
- 
-
 
   //- Sayfalanmış ögeleri hesaplayalım
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -25,7 +21,16 @@ const TodoList = ({ addList, setAddList }) => {
   const currentItems = addList.slice(indexOfFirstItem, indexOfLastItem);
 
   //- birden fazla seçim yapabilmek için
-  const [selectedItems, setSelectedItems] = useState([]);
+  //- useStatiın değişkenli ve koşullu kullanımı
+  const [selectedItems, setSelectedItems] = useState(() => {
+    const saved = localStorage.getItem("selectedItems");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    // selectedItems değiştiğinde, bu değişikliği localStorage'a kaydet
+    localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+  }, [selectedItems]);
 
   useEffect(() => {
     localStorage.setItem("list", JSON.stringify(addList));
