@@ -3,8 +3,7 @@ import Swal from "sweetalert2";
 
 const Header = ({ setAddList, addList }) => {
   const [gelenInput, setGelenInput] = useState("");
-  //- id ataması için counter oluşturuldu
-  const [counter, setCounter] = useState(1);
+
 
 
   const handleInput = (e) => {
@@ -20,12 +19,10 @@ const Header = ({ setAddList, addList }) => {
       });
     } else {
       setGelenInput("");
-      const newId = counter; 
-      setCounter(counter + 1);
       setAddList([
         ...addList,
         {
-          id: newId ,
+          id: new Date().getTime() ,
           note: gelenInput,
         },
       ]);

@@ -75,7 +75,7 @@ const TodoList = ({ addList, setAddList }) => {
 
   return (
     <div className="todoList">
-      {currentItems.map(({ id, note }) => (
+      {currentItems.map(({ id, note }, index) => (
         <div key={id} className="liste">
           <div
             className="note"
@@ -96,7 +96,7 @@ const TodoList = ({ addList, setAddList }) => {
                   selectedItemId === id && show ? "line-through" : "none",
               }}
             >
-              {note} ` {id}`
+              {note} ` {index+1}`
             </span>{" "}
           </div>
           <div className="buttons">
