@@ -14,8 +14,8 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, setCurrentPage }) =
   };
 
   return (
-    <div>
-      <div className="nextAndBack">
+    <div style={{display: totalItems > 3 ? "block": "none"}} >
+      <div className="nextAndBack"> 
         <AiFillCaretLeft
           className="left"
           onClick={goToPreviousPage}
