@@ -27,6 +27,7 @@ const TodoList = ({ addList, setAddList }) => {
 
   const handleSil = (id) => {
     setAddList(addList.filter((item) => item.id !== id));
+    
   };
 
   const updateList = (id, yeniNot) => {
@@ -67,6 +68,8 @@ const TodoList = ({ addList, setAddList }) => {
     });
   };
 
+
+  //- hangi not hangisi görüntülemek için
   const [show, setShow] = useState(false);
   const handleToggleSelect = (id) => {
     setSelectedItemId(id);
@@ -95,7 +98,7 @@ const TodoList = ({ addList, setAddList }) => {
                   selectedItemId === id && show ? "line-through" : "none",
               }}
             >
-              {note}
+              {note} ` {id}`
             </span>{" "}
           </div>
           <div className="buttons">

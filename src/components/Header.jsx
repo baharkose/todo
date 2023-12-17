@@ -3,26 +3,29 @@ import Swal from "sweetalert2";
 
 const Header = ({ setAddList, addList }) => {
   const [gelenInput, setGelenInput] = useState("");
+  const [counter, setCounter] = useState(1);
+
 
   const handleInput = (e) => {
     e.preventDefault();
     if (!gelenInput) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Please, give a note...",
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please, give a note...",
 
-            customClass: {
-              confirmButton: 'custom-confirm-button-class',}
-            
-          });
-
+        customClass: {
+          confirmButton: "custom-confirm-button-class",
+        },
+      });
     } else {
-      setGelenInput("")
+      setGelenInput("");
+      const newId = counter; 
+      setCounter(counter + 1);
       setAddList([
         ...addList,
         {
-          id: new Date().getTime(),
+          id: newId ,
           note: gelenInput,
         },
       ]);
@@ -31,7 +34,7 @@ const Header = ({ setAddList, addList }) => {
   return (
     <div>
       <form className="header">
-        <input type="text" onChange={(e) => setGelenInput(e.target.value)} />
+        <input type="text" value={gelenInput} onChange={(e) => setGelenInput(e.target.value)} />
         <button type="submit" onClick={handleInput} className="addBtn">
           +
         </button>
